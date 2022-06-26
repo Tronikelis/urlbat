@@ -12,3 +12,15 @@
 <img src="https://img.shields.io/badge/dependencies-0-success?style=flat-square" />
  
 </div>
+
+## What is this?
+
+This package is meant to be a **faster and smaller** drop-in replacement for [urlcat](https://www.npmjs.com/package/urlcat).
+
+For me, the urlcat package is very useful, but it lacks a few required features, for example, choosing how to format arrays in the querystring.
+
+Todo
+
+## Docs
+
+Todo
