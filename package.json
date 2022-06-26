@@ -1,7 +1,7 @@
 {
     "name": "urlbat",
     "version": "1.0.0",
-    "description": "",
+    "description": "A library to join all parts of a url",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
@@ -14,8 +14,20 @@
     "files": [
         "dist"
     ],
-    "keywords": [],
-    "author": "",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Tronikelis/urlbat.git"
+    },
+    "keywords": [
+        "url",
+        "uri",
+        "build",
+        "builder",
+        "concat",
+        "concatenate",
+        "urlcat"
+    ],
+    "author": "Tronikelis",
     "license": "MIT",
     "devDependencies": {
         "@types/jest": "^28.1.3",

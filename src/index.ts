@@ -61,7 +61,7 @@ const urlbat = (
 
         .forEach(([key, value]) => {
             if (Array.isArray(value)) {
-                switch (FROZEN_SETTINGS?.array) {
+                switch (FROZEN_SETTINGS.array) {
                     case "comma":
                         query.append(key, value.join(","));
                         break;
