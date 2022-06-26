@@ -23,26 +23,23 @@ const urlbat = (
     const FROZEN_PARAMS: Params | Opts =
         typeof segments === "string" ? { ...params } : { ...segments };
 
-    const FROZEN_SEGMENTS =
-        typeof segments === "string" ? joinParts(base, segments) : base;
+    const FROZEN_SEGMENTS = typeof segments === "string" ? joinParts(base, segments) : base;
 
-    const FROZEN_SETTINGS: Opts = (typeof segments === "string"
-        ? opts
-        : params) || { array: "repeat" };
+    const FROZEN_SETTINGS: Opts = (typeof segments === "string" ? opts : params) || {
+        array: "repeat",
+    };
 
     const usedParams: string[] = [];
 
     // add custom paths from params to segments
     const url = FROZEN_SEGMENTS.split("/")
-        .map((seg) => {
+        .map(seg => {
             if (seg[0] === ":") {
                 const key = seg.slice(1);
 
                 const value = (FROZEN_PARAMS as Params)[key];
                 if (!assert(value)) {
-                    throw new Error(
-                        "path segments can't be falsy, got " + String(value)
-                    );
+                    throw new Error("path segments can't be falsy, got " + String(value));
                 }
 
                 usedParams.push(key);
@@ -53,7 +50,7 @@ const urlbat = (
         })
         .join("/");
 
-    usedParams.forEach((key) => {
+    usedParams.forEach(key => {
         delete (FROZEN_PARAMS as Params)[key];
     });
 
@@ -66,7 +63,7 @@ const urlbat = (
             if (Array.isArray(value)) {
                 switch (FROZEN_SETTINGS?.array) {
                     case "repeat":
-                        value.forEach((item) => query.append(key, item));
+                        value.forEach(item => query.append(key, item));
                         break;
                     case "comma":
                         query.append(key, value.join(","));

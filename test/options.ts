@@ -3,23 +3,14 @@ import urlbat from "../src";
 describe("urlbat options", () => {
     it("Options can be passed as a third parameter ", () => {
         const expected = "https://example.com/one?param=1";
-        const actual = urlbat(
-            "https://example.com/one",
-            { param: 1 },
-            { array: "comma" }
-        );
+        const actual = urlbat("https://example.com/one", { param: 1 }, { array: "comma" });
 
         expect(expected).toBe(actual);
     });
 
     it("Options can be passed as a fourth parameter ", () => {
         const expected = "https://example.com/one?param=1";
-        const actual = urlbat(
-            "https://example.com",
-            "/one",
-            { param: 1 },
-            { array: "comma" }
-        );
+        const actual = urlbat("https://example.com", "/one", { param: 1 }, { array: "comma" });
 
         expect(expected).toBe(actual);
     });
@@ -39,9 +30,7 @@ describe("urlbat arrays", () => {
     });
 
     it("Option array: 'comma', param is joined with commmas", () => {
-        const expected = `https://example.com/one?arr=${encodeURIComponent(
-            "1,2,3"
-        )}`;
+        const expected = `https://example.com/one?arr=${encodeURIComponent("1,2,3")}`;
         const actual = urlbat(
             "https://example.com",
             "/one",

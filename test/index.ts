@@ -1,5 +1,6 @@
 import urlbat from "../src";
 
+// credits to https://github.com/balazsbotond/urlcat for these test suites
 describe("urlbat", () => {
     it("Concatenates the base URL and the path if no params are passed", () => {
         const expected = "http://example.com/path";
@@ -67,11 +68,13 @@ describe("urlbat", () => {
     it("Can handle complex URL's", () => {
         const expected =
             "http://example.com/users/123/posts/987/comments?authorId=456&limit=10&offset=120";
-        const actual = urlbat(
-            "http://example.com/",
-            "/users/:userId/posts/:postId/comments",
-            { userId: 123, postId: 987, authorId: 456, limit: 10, offset: 120 }
-        );
+        const actual = urlbat("http://example.com/", "/users/:userId/posts/:postId/comments", {
+            userId: 123,
+            postId: 987,
+            authorId: 456,
+            limit: 10,
+            offset: 120,
+        });
         expect(actual).toBe(expected);
     });
 
@@ -133,9 +136,7 @@ describe("urlbat", () => {
     });
 
     it("Throws on falsy segments", () => {
-        expect(() =>
-            urlbat("/base/", "/:user", { user: undefined })
-        ).toThrowError();
+        expect(() => urlbat("/base/", "/:user", { user: undefined })).toThrowError();
 
         expect(() => urlbat("/base/", "/:user", { user: null })).toThrowError();
     });

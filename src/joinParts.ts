@@ -16,7 +16,7 @@ const joinParts = (...parts: string[]) => {
     //   url += one + two;
     // }
 
-    parts.forEach((part) => {
+    parts.forEach(part => {
         alternate = !alternate;
 
         if (alternate) {
