@@ -131,4 +131,12 @@ describe("urlbat", () => {
             "http://example.com:8080/path/1"
         );
     });
+
+    it("Throws on falsy segments", () => {
+        expect(() =>
+            urlbat("/base/", "/:user", { user: undefined })
+        ).toThrowError();
+
+        expect(() => urlbat("/base/", "/:user", { user: null })).toThrowError();
+    });
 });
