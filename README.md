@@ -6,7 +6,7 @@
 
 <div align="center">
 
-<img src="https://img.shields.io/badge/coverage-95.23%25-success?style=flat-square" />
+<img src="https://img.shields.io/badge/coverage-100%25-success?style=flat-square" />
 <img src="https://img.shields.io/bundlephobia/minzip/urlbat?style=flat-square" />
 <img src="https://img.shields.io/npm/v/urlbat?style=flat-square" />
 <img src="https://img.shields.io/badge/dependencies-0-success?style=flat-square" />
@@ -15,12 +15,103 @@
 
 ## What is this?
 
-This package is meant to be a **faster and smaller** drop-in replacement for [urlcat](https://www.npmjs.com/package/urlcat).
+This package is meant to be a **faster and smaller** drop-in alternative for [urlcat](https://www.npmjs.com/package/urlcat).
+
+## Why
 
 For me, the urlcat package is very useful, but it lacks a few required features, for example, choosing how to format arrays in the querystring.
 
-Todo
+Also, the original project's last update was 2 years ago
 
-## Docs
+## Features
 
-Todo
+-   750 bytes min + gzip
+-   Typescript
+-   0 Dependencies
+-   Multiple formatters for arrays in querystrings
+
+## Simple example
+
+```javascript
+const urlbat = require("urlbat").default;
+import urlbat from "urlbat";
+
+const url = urlbat("/user/:id/info", {
+    id: "123",
+    verbose: true,
+    escaped: "/mid/",
+    page: 1,
+    count: 50,
+});
+
+console.log(url);
+// /user/123/info?verbose=true&escaped=%2Fmid%2F&page=1&count=50
+```
+
+You can pass a base url also
+
+```javascript
+urlbat("https://example.com/", "/user/:id/info", {
+    id: "123",
+    nice: "yep",
+});
+// https://example.com/user/123/info?nice=yep
+```
+
+## Install
+
+```bash
+npm i urlbat
+```
+
+## Options
+
+Options is the second non string object passed to the function, after parameters
+
+-   `array`: specify which formatting behavior you want to use for arrays, default **repeat**
+
+## More on the array option
+
+Repeat the values:
+
+```javascript
+urlbat(
+    "https://example.com/",
+    "/user/:id/info",
+    {
+        id: "123",
+        nice: ["a", "b", "c"],
+    },
+    { array: "repeat" }
+);
+// https://example.com/user/123/info?nice=a&nice=b&nice=c
+```
+
+Separate them with a comma
+
+```javascript
+urlbat(
+    "https://example.com/",
+    "/user/:id/info",
+    {
+        id: "123",
+        nice: ["a", "b", "c"],
+    },
+    { array: "comma" }
+);
+
+// https://example.com/user/123/info?nice=a%2Cb%2Cc
+```
+
+```javascript
+const url = urlbat(
+    "https://example.com/",
+    "/user/:id/info",
+    {
+        id: "123",
+        nice: ["a", "b", "c"],
+    },
+    { array: "stringify" }
+);
+// https://example.com/user/123/info?nice=%5B%22a%22%2C%22b%22%2C%22c%22%5D
+```

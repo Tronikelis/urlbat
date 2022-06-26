@@ -1,6 +1,6 @@
 {
     "name": "urlbat",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A library to join all parts of a url",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
         "prettier": "prettier --write src",
         "lint": "eslint . -c ./.eslintrc.json",
         "build": "tsc -p .",
-        "prepublish": "npm run build",
+        "prepublishOnly": "npm run build",
         "test": "jest"
     },
     "files": [
