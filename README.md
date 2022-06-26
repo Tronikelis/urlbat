@@ -6,6 +6,8 @@
 
 <div align="center">
 
-<img src="https://img.shields.io/badge/Coverage-95.23%25-blue?style=flat-square" />
+<img src="https://img.shields.io/badge/Coverage-95.23%25-success?style=flat-square" />
+<img src="https://img.shields.io/bundlephobia/minzip/urlbat?style=flat-square" />
+<img src="https://img.shields.io/npm/v/urlbat?style=flat-square" />
 
 </div>
