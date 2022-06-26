@@ -29,7 +29,7 @@ const urlbat = (
 
     const FROZEN_SETTINGS: Opts = (typeof segments === "string" ? opts : params) || defOpts;
 
-    // params that will be used in the dyanimc segments => user/:id/name => [id]
+    // params that will be used in the dynamic segments => user/:id/name => [id]
     const usedParams: string[] = [];
 
     // generate a valid url without the query
