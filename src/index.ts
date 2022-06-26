@@ -62,14 +62,14 @@ const urlbat = (
         .forEach(([key, value]) => {
             if (Array.isArray(value)) {
                 switch (FROZEN_SETTINGS?.array) {
-                    case "repeat":
-                        value.forEach(item => query.append(key, item));
-                        break;
                     case "comma":
                         query.append(key, value.join(","));
                         break;
                     case "stringify":
                         query.append(key, JSON.stringify(value));
+                        break;
+                    default:
+                        value.forEach(item => query.append(key, item));
                         break;
                 }
                 return;
