@@ -137,7 +137,12 @@ describe("urlbat", () => {
 
     it("Throws on falsy segments", () => {
         expect(() => urlbat("/base/", "/:user", { user: undefined })).toThrowError();
-
         expect(() => urlbat("/base/", "/:user", { user: null })).toThrowError();
+    });
+
+    it("Removes falsy values, except 0 & booleans", () => {
+        expect(urlbat("/base", { foo: null, bar: undefined, boolean: true, zero: 0 })).toBe(
+            "/base?boolean=true&zero=0"
+        );
     });
 });

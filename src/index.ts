@@ -14,30 +14,31 @@ const assert = (item: any) => {
     return !!item;
 };
 
+const defOpts: Opts = { array: "repeat" };
+
 const urlbat = (
     base: string,
     segments: string | Params,
     params?: Params | Opts,
     opts?: Opts
 ) => {
-    const FROZEN_PARAMS: Params | Opts =
+    const FROZEN_PARAMS: Params =
         typeof segments === "string" ? { ...params } : { ...segments };
 
     const FROZEN_SEGMENTS = typeof segments === "string" ? joinParts(base, segments) : base;
 
-    const FROZEN_SETTINGS: Opts = (typeof segments === "string" ? opts : params) || {
-        array: "repeat",
-    };
+    const FROZEN_SETTINGS: Opts = (typeof segments === "string" ? opts : params) || defOpts;
 
+    // params that will be used in the dyanimc segments => user/:id/name => [id]
     const usedParams: string[] = [];
 
-    // add custom paths from params to segments
+    // generate a valid url without the query
     const url = FROZEN_SEGMENTS.split("/")
         .map(seg => {
             if (seg[0] === ":") {
                 const key = seg.slice(1);
+                const value = FROZEN_PARAMS[key];
 
-                const value = (FROZEN_PARAMS as Params)[key];
                 if (!assert(value)) {
                     throw new Error("path segments can't be falsy, got " + String(value));
                 }
@@ -50,14 +51,16 @@ const urlbat = (
         })
         .join("/");
 
+    // delete already used params to avoid them in the querystring
     usedParams.forEach(key => {
-        delete (FROZEN_PARAMS as Params)[key];
+        delete FROZEN_PARAMS[key];
     });
 
     const query = new URLSearchParams({});
 
     Object.entries(FROZEN_PARAMS)
-        .filter(([, param]) => assert(param) || !!param)
+        // removes null, undefined
+        .filter(([, param]) => assert(param))
 
         .forEach(([key, value]) => {
             if (Array.isArray(value)) {
