@@ -16,25 +16,25 @@ const joinParts = (...parts: string[]) => {
     //   url += one + two;
     // }
 
-    for (const part of parts) {
+    parts.forEach((part) => {
         alternate = !alternate;
 
         if (alternate) {
             if (part[part.length - 1] === "/") {
                 url += part;
-                continue;
+                return;
             }
             url += part + "/";
-            continue;
+            return;
         }
 
         if (part[0] === "/") {
             url += part.slice(1);
-            continue;
+            return;
         }
 
         url += part;
-    }
+    });
 
     return url;
 };
