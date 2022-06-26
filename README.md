@@ -9,5 +9,6 @@
 <img src="https://img.shields.io/badge/coverage-95.23%25-success?style=flat-square" />
 <img src="https://img.shields.io/bundlephobia/minzip/urlbat?style=flat-square" />
 <img src="https://img.shields.io/npm/v/urlbat?style=flat-square" />
-
+<img src="https://img.shields.io/badge/dependencies-0-success?style=flat-square" />
+ 
 </div>
