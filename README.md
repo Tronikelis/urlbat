@@ -103,6 +103,8 @@ urlbat(
 // https://example.com/user/123/info?nice=a%2Cb%2Cc
 ```
 
+Just JSON.stringify the thing
+
 ```javascript
 const url = urlbat(
     "https://example.com/",
