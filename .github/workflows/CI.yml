@@ -57,6 +57,6 @@ jobs:
             - name: Install node_modules
               run: >
                   npm ci
-            - name: ESLint
+            - name: Jest
               run: >
                   npm run test
