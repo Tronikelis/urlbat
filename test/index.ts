@@ -145,4 +145,10 @@ describe("urlbat", () => {
             "/base?boolean=true&zero=0"
         );
     });
+
+    it("Handles unusual case", () => {
+        expect(urlbat("https://example.com", "", { test: "abc" })).toBe(
+            "https://example.com/?test=abc"
+        );
+    });
 });
