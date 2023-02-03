@@ -62,6 +62,9 @@ const urlbat = (
         // removes null, undefined
         .filter(([, param]) => assert(param))
 
+        // sort the params that will be in the querystring
+        .sort(([a], [b]) => a.localeCompare(b))
+
         .forEach(([key, value]) => {
             if (Array.isArray(value)) {
                 switch (FROZEN_SETTINGS.array) {

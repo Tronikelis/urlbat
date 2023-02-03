@@ -29,6 +29,7 @@ Also, the original project's last update was 2 years ago
 -   Typescript
 -   0 Dependencies
 -   Multiple formatters for arrays in querystrings
+-   Stable, sorts the querystring
 
 ## Simple example
 

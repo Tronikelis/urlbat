@@ -151,4 +151,14 @@ describe("urlbat", () => {
             "https://example.com/?test=abc"
         );
     });
+
+    it("Sorts query params alphabetically", () => {
+        expect(
+            urlbat("https://example.com", {
+                b: 1,
+                a: 1,
+                c: 1,
+            })
+        ).toBe("https://example.com?a=1&b=1&c=1");
+    });
 });
