@@ -1,6 +1,6 @@
 {
     "name": "urlbat",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "description": "A library to join all parts of a url",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
