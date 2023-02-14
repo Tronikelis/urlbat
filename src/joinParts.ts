@@ -1,4 +1,7 @@
 const joinParts = (...parts: string[]) => {
+    const filtered = parts.filter(part => part.length > 0);
+    if (filtered.length === 1) return filtered[0];
+
     let url = "";
     let alternate = false;
 
@@ -35,6 +38,12 @@ const joinParts = (...parts: string[]) => {
 
         url += part;
     });
+
+    const lastPart = parts[parts.length - 1];
+    // if the last part does not have "/" then the url should not have it either
+    while (lastPart[lastPart.length - 1] !== "/" && url[url.length - 1] === "/") {
+        url = url.slice(0, -1);
+    }
 
     return url;
 };

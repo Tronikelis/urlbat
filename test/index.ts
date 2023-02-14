@@ -148,7 +148,7 @@ describe("urlbat", () => {
 
     it("Handles unusual case", () => {
         expect(urlbat("https://example.com", "", { test: "abc" })).toBe(
-            "https://example.com/?test=abc"
+            "https://example.com?test=abc"
         );
     });
 
@@ -160,5 +160,27 @@ describe("urlbat", () => {
                 c: 1,
             })
         ).toBe("https://example.com?a=1&b=1&c=1");
+    });
+
+    it("Deals with empty values", () => {
+        expect(urlbat("", "nice")).toEqual("nice");
+        expect(urlbat("nice", "")).toEqual("nice");
+
+        expect(urlbat("", "/nice")).toEqual("/nice");
+        expect(urlbat("/nice", "")).toEqual("/nice");
+
+        expect(urlbat("", "/nice/")).toEqual("/nice/");
+        expect(urlbat("/nice/", "")).toEqual("/nice/");
+    });
+
+    it("deals with '/'", () => {
+        expect(urlbat("/", "")).toEqual("/");
+        expect(urlbat("", "/")).toEqual("/");
+
+        expect(urlbat("yep/", "/")).toEqual("yep/");
+        expect(urlbat("yep", "/")).toEqual("yep/");
+
+        expect(urlbat("/yep", "/")).toEqual("/yep/");
+        expect(urlbat("/yep/", "/")).toEqual("/yep/");
     });
 });
