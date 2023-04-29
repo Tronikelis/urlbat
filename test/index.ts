@@ -183,4 +183,12 @@ describe("urlbat", () => {
         expect(urlbat("/yep", "/")).toEqual("/yep/");
         expect(urlbat("/yep/", "/")).toEqual("/yep/");
     });
+
+    it("Ignores path segments if params don't exist", () => {
+        const url = "/:a/b/:c";
+
+        expect(urlbat(url, "")).toEqual(url);
+        expect(urlbat(url, url)).toEqual(url + url);
+        expect(urlbat(url, "/")).toEqual(url + "/");
+    });
 });

@@ -22,34 +22,39 @@ const urlbat = (
     params?: Params | Opts,
     opts?: Opts
 ) => {
+    const FROZEN_SEGMENTS = typeof segments === "string" ? joinParts(base, segments) : base;
+
     const FROZEN_PARAMS: Params =
         typeof segments === "string" ? { ...params } : { ...segments };
-
-    const FROZEN_SEGMENTS = typeof segments === "string" ? joinParts(base, segments) : base;
 
     const FROZEN_SETTINGS: Opts = (typeof segments === "string" ? opts : params) || defOpts;
 
     // params that will be used in the dynamic segments => user/:id/name => [id]
     const usedParams: string[] = [];
 
-    // generate a valid url without the query
-    const url = FROZEN_SEGMENTS.split("/")
-        .map(seg => {
-            if (seg[0] === ":") {
-                const key = seg.slice(1);
-                const value = FROZEN_PARAMS[key];
+    let url = FROZEN_SEGMENTS;
 
-                if (!assert(value)) {
-                    throw new Error("path segments can't be falsy, got " + String(value));
+    // generate a valid url without the query
+    if (Object.values(FROZEN_PARAMS).length > 0) {
+        url = url
+            .split("/")
+            .map(seg => {
+                if (seg[0] === ":") {
+                    const key = seg.slice(1);
+                    const value = FROZEN_PARAMS[key];
+
+                    if (!assert(value)) {
+                        throw new Error("path segments can't be falsy, got " + String(value));
+                    }
+
+                    usedParams.push(key);
+                    return encodeURIComponent(String(value));
                 }
 
-                usedParams.push(key);
-                return encodeURIComponent(String(value));
-            }
-
-            return seg;
-        })
-        .join("/");
+                return seg;
+            })
+            .join("/");
+    }
 
     // delete already used params to avoid them in the querystring
     usedParams.forEach(key => {
