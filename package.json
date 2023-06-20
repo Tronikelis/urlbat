@@ -1,12 +1,19 @@
 {
     "name": "urlbat",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "A library to join all parts of a url",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "exports": {
-        "import": "./dist/index.mjs",
-        "require": "./dist/index.js"
+        "types": "./dist/index.d.ts",
+        "import": {
+            "default": "./dist/index.mjs",
+            "types": "./dist/index.d.ts"
+        },
+        "require": {
+            "default": "./dist/index.js",
+            "types": "./dist/index.d.ts"
+        }
     },
     "scripts": {
         "prettier": "prettier --write src",
