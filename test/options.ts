@@ -1,4 +1,4 @@
-import urlbat from "../src";
+import urlbat from "../src/index.js";
 
 describe("urlbat options", () => {
     it("Options can be passed as a third parameter ", () => {

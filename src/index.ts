@@ -1,4 +1,4 @@
-import joinParts from "./joinParts";
+import joinParts from "./joinParts.js";
 
 export interface Opts {
     /**
