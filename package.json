@@ -1,6 +1,6 @@
 {
     "name": "urlbat",
-    "version": "2.0.1",
+    "version": "3.0.0",
     "description": "A library to join all parts of a url",
     "type": "module",
     "main": "./dist/index.cjs",
@@ -14,10 +14,6 @@
         "require": {
             "default": "./dist/index.cjs",
             "types": "./dist/index.d.cts"
-        },
-        "default": {
-            "default": "./dist/index.js",
-            "types": "./dist/index.d.ts"
         }
     },
     "scripts": {

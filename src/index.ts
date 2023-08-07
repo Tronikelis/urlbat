@@ -101,5 +101,4 @@ const urlbat = (
     return url + "?" + query.toString();
 };
 
-export default urlbat;
 export { joinParts, urlbat };

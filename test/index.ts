@@ -1,4 +1,4 @@
-import urlbat from "../src/index.js";
+import { urlbat } from "../src/index.js";
 
 // credits to https://github.com/balazsbotond/urlcat for these test suites
 describe("urlbat", () => {
