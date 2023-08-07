@@ -3,5 +3,8 @@
     "semi": true,
     "endOfLine": "auto",
     "arrowParens": "avoid",
-    "printWidth": 95
+    "printWidth": 95,
+    "singleQuote": false,
+    "bracketSameLine": false,
+    "trailingComma": "es5"
 }

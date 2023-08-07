@@ -41,7 +41,7 @@ const urlbat = (
             .map(seg => {
                 if (seg[0] === ":") {
                     const key = seg.slice(1);
-                    const value = FROZEN_PARAMS[key];
+                    const value = FROZEN_PARAMS[key] as unknown;
 
                     if (!assert(value)) {
                         throw new Error("path segments can't be falsy, got " + String(value));
@@ -102,4 +102,4 @@ const urlbat = (
 };
 
 export default urlbat;
-export { urlbat, joinParts };
+export { joinParts, urlbat };
