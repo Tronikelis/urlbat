@@ -68,7 +68,11 @@ const urlbat = (
         .filter(([, param]) => assert(param))
 
         // sort the params that will be in the querystring
-        .sort(([a], [b]) => a.localeCompare(b))
+        .sort(([a], [b]) => {
+            if (a > b) return 1;
+            if (a < b) return -1;
+            return 0;
+        })
 
         .forEach(([key, value]) => {
             if (Array.isArray(value)) {

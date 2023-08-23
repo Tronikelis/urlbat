@@ -160,6 +160,17 @@ describe("urlbat", () => {
                 c: 1,
             })
         ).toBe("https://example.com?a=1&b=1&c=1");
+
+        expect(
+            urlbat("/aa", {
+                C: "C",
+                B: "B",
+                A: "A",
+                a: "a",
+                b: "b",
+                c: "c",
+            })
+        ).toBe("/aa?A=A&B=B&C=C&a=a&b=b&c=c");
     });
 
     it("Deals with empty values", () => {
